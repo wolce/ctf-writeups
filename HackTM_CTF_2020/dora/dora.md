@@ -22,14 +22,11 @@ The idea is thus to find in which sub image Dora has been placed, in a PNG image
 
 We can start by collecting several images from the server and have a look at them.
 
-![Image 1](files/im1.png)
-![Image 2](files/im2.png)
-![Image 3](files/im3.png)
-![Image 4](files/im4.png)
-![Image 5](files/im5.png)
-![Image 6](files/im6.png)
-![Image 7](files/im7.png)
-![Image 8](files/im8.png)
+<p float="left">
+  <img src="files/im1.png" width="200" />
+  <img src="files/im2.png" width="200" /> 
+  <img src="files/im3.png" width="200" />
+</p>
 
 Image processing techniques will be very useful to solve this challenge.
 After some research, a well-known library called OpenCV has been implemented in Python. 

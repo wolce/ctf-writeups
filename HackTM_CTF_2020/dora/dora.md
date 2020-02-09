@@ -221,13 +221,21 @@ conn.interactive()
 Here is an overview of the segmented images as well as the resulting one.
 
 <p float="center">
-  <img src="files/im1_seg.png" width="280" />
-  <img src="files/im2_seg.png" width="280" /> 
-  <img src="files/im3_seg.png" width="280" />
-  <img src="files/im1_res.png" width="280" />
-  <img src="files/im2_res.png" width="280" /> 
-  <img src="files/im3_res.png" width="280" />
+  <img src="files/res_im1.png" width="280" />
+  <img src="files/res_im2.png" width="280" /> 
+  <img src="files/res_im3.png" width="280" />
+  <img src="files/thresh_im1.png" width="280" />
+  <img src="files/thresh_im2.png" width="280" /> 
+  <img src="files/thresh_im3.png" width="280" />
 </p>
+
+Example of the step-by-step process for one image:
+
+![1](files/res1.png)
+![1](files/res2.png)
+![1](files/res3.png)
+![1](files/res4.png)
+![1](files/res5.png)
 
 After 800 iterations, the server returns another image with the flag.
 

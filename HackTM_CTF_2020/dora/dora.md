@@ -117,9 +117,9 @@ For the preprocessing step, the image is also enlarged to avoid borders effects 
 
 The segmentation step stays the same.
 
-The script will try to find all of the sprites matching our templates in the image. It will then remove those occurrences in a copy `imerased` of the original image. The resulting image will only contains white pixels (don't forget, the image is segmented) of our beloved Dora.
+The script will try to find all sprites matching our templates in the image. It will then remove those occurrences in a copy `imerased` of the original image. The resulting image will only contains white pixels of our beloved Dora.
 
-Finally, the script counts all white pixels (so belonging to Dora) in the image and checks in which part of it there are the most.
+Finally, the script counts all white pixels (so belonging to Dora) in the image and checks in which part of it they are the most present.
 
 Here is a self-explained code.
 
@@ -218,7 +218,18 @@ for i in range(800):
 conn.interactive()
 ```
 
-After having iterated 800 times, the server returns another image with the flag.
+Here is an overview of the segmented images as well as the resulting one.
+
+<p float="center">
+  <img src="files/im1_seg.png" width="280" />
+  <img src="files/im2_seg.png" width="280" /> 
+  <img src="files/im3_seg.png" width="280" />
+  <img src="files/im1_res.png" width="280" />
+  <img src="files/im2_res.png" width="280" /> 
+  <img src="files/im3_res.png" width="280" />
+</p>
+
+After 800 iterations, the server returns another image with the flag.
 
 ![Flag](files/flag.png)
 

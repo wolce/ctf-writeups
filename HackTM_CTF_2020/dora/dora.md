@@ -221,12 +221,12 @@ conn.interactive()
 Here is an overview of the segmented images as well as the resulting one.
 
 <p float="center">
-  <img src="files/res_im1.png" width="280" />
-  <img src="files/res_im2.png" width="280" /> 
-  <img src="files/res_im3.png" width="280" />
   <img src="files/thresh_im1.png" width="280" />
   <img src="files/thresh_im2.png" width="280" /> 
   <img src="files/thresh_im3.png" width="280" />
+  <img src="files/res_im1.png" width="280" />
+  <img src="files/res_im2.png" width="280" /> 
+  <img src="files/res_im3.png" width="280" />
 </p>
 
 Example of the step-by-step process for one image:

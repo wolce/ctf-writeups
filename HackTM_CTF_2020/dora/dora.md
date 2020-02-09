@@ -1,8 +1,9 @@
 # Dora
 
-Dora was part of the [nullcon HackIM CTF](). Two indications were given to us:
- - `nc misc.ctf.nullcon.net 8000`
- > Dora needs to be found 800 times
+Dora was part of the [nullcon HackIM CTF](). Two indications were given:
+
+`nc misc.ctf.nullcon.net 8000`
+> Dora needs to be found 800 times
 
 ## Recon
 
@@ -14,7 +15,7 @@ A very large string was following.
 
 ![Output](files/1.png)
 
-Using CyberChef we can see it is just an embedded PNG image. There is a uniform background with sprites stuck on it.
+Using CyberChef we can see it is just an embedded PNG image. There is an uniform background with sprites stuck on it.
 
 ![CyberChef](files/2.png)
 
@@ -22,10 +23,13 @@ The idea is thus to find in which sub image Dora has been placed, in a PNG image
 
 We can start by collecting several images from the server and have a look at them.
 
-<p float="left">
-  <img src="files/im1.png" width="200" />
-  <img src="files/im2.png" width="200" /> 
-  <img src="files/im3.png" width="200" />
+<p float="center">
+  <img src="files/im1.png" width="280" />
+  <img src="files/im2.png" width="280" /> 
+  <img src="files/im3.png" width="280" />
+  <img src="files/im4.png" width="280" />
+  <img src="files/im5.png" width="280" /> 
+  <img src="files/im6.png" width="280" />
 </p>
 
 Image processing techniques will be very useful to solve this challenge.
@@ -41,11 +45,9 @@ The background colour changes everytime. | We should get rid of colours and focu
 
 ## Methodology
 
-The main idea is to gather the five sprites that are always displayed, and use them to identify those in all images received by the server. Then remove them, and find the remaining sprite which is Dora.
+The main idea is to gather the five sprites that are always displayed, and use them to identify those in all the images received by the server. Then remove them, and find the remaining sprite which is Dora.
 
-Note that another possible way to solve the challenge whould have been to collect all images of Dora and use them to detect her. I got 10 different sprites, so in average it would take the same time as looping everytime over 5 templates (the not-Dora's ones).
-
-The sprites gathered should look the same as those in all received images. Thus, the following steps need to be applied on both the collected sprites and the image.
+The sprites gathered should look the same as those in all received images. Thus, the following steps need to be applied on both the collected sprites and the images.
 
 1. Preprocessing: prepare an image so it is easier to perform other image processing techniques on it. In our case:
     - Transform the RGB sprite/image in Gray
@@ -53,10 +55,9 @@ The sprites gathered should look the same as those in all received images. Thus,
     - Highlight shapes and remove the background, so partitioning the image will be easier.
 2. Segmentation: create two partitions, one for the sprites and one for the background. 
 3. Detection: match two images, in our case a template an the image received from athe server.
-4. Postprocessing: get the information we are looking for
+4. Postprocessing: get the information we are looking for.
 
-**Templates**
----
+## Templates
 
 It is easy to extract sprites from an image using [Spritex](https://github.com/codetorex/spritex). Here is the result:
 
@@ -66,7 +67,7 @@ It is easy to extract sprites from an image using [Spritex](https://github.com/c
 ![Sprite 4](sprites/4.png)
 ![Sprite 5](sprites/5.png)
 
-In order to create our templates we need to apply the same Preprocessing and Segmentation steps as for the main image. Here is a script which needs to be executed only one time.
+In order to create our templates we need to apply the previously seen Preprocessing and Segmentation steps. Here is a script which needs to be executed only one time.
 
 ```python
 from imutils.paths import list_images
@@ -102,8 +103,15 @@ for spritePath in list_images(path_sprites):
 	i = i + 1
 ```
 
-**Main image**
----
+We obtain the following segmented sprites.
+
+![Sprite 1](seg_sprites/1.png)
+![Sprite 2](seg_sprites/2.png)
+![Sprite 3](seg_sprites/3.png)
+![Sprite 4](seg_sprites/4.png)
+![Sprite 5](seg_sprites/5.png)
+
+## Main image
 
 For the preprocessing step, the image is also enlarged to avoid borders effects (like if a sprite appears to be stuck to a border).
 
@@ -207,10 +215,11 @@ for i in range(800):
 	else:
 		print("Error")
 
-
 conn.interactive()
 ```
 
 After having iterated 800 times, the server returns another image with the flag.
 
 ![Flag](files/flag.png)
+
+Note that another possible way to solve the challenge whould have been to collect all different sprites of Dora and use them to detect her. I got 10 different sprites, so in average it would take the same time as looping everytime over 5 templates (the not-Dora's ones).
